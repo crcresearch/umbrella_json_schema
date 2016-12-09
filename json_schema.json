@@ -1,0 +1,262 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "JSON Schema for Umbrella specification",
+  "type": "object",
+  "properties": {
+
+    "hardware": {
+      "type": "object",
+      "description": "hardware Section (required)",
+      "properties": {
+        "arch": {
+          "type": "string",
+          "description": "The hardware architecture the application needs to run on. Options: x86_64, i386, i686. Current support options: x86_64. Not case sensitive. Required."
+        },
+        "cores": {
+          "type": "string",
+          "description": "The number of cores the applications needs. Options: 1, 2, 3, 4 etc. Optional. Default: 1."
+        },
+        "memory": {
+          "type": "string",
+          "description": "The memory space the application needs in the unit of GB. Options: 1GB, 2GB etc. Optional. Default: 1GB. Not case sensitive."
+        },
+        "disk": {
+          "type": "string",
+          "description": "The disk space the application needs in the unit of GB. Options: 1GB, 2GB etc. Optional. Default: 1GB. Not case sensitive."
+        }
+      },
+      "required": [
+        "arch"
+      ]
+    },
+
+    "kernel": {
+      "type": "object",
+      "description": "Kernel Section (required)",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The kernel type the application requires. Options: linux, windows. Not case sensitive."
+        },
+        "version": {
+          "type": "string",
+          "description": "The kernel version in the format of A.B.C (A: kernel version; B: major revision of the kernel; C: the minor revision of the kernel). You can specify this attribute to a single value like 2.6.18 or a range like >=2.6.18 or a range like [2.6.18, 2.6.32]"
+        }
+      },
+      "required": [
+        "name",
+        "version"
+      ]
+    },
+
+    "cmd": {
+      "type": "string"
+    },
+
+    "environ": {
+      "type": "object",
+      "patternProperties": {
+        "^.*$": {
+          "type": "string"
+        }
+      }
+    },
+
+    "os": {
+      "type": "object",
+      "description": "OS section",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "the id of the OS image. There may exist multiple OS images for Redhat 5.10, the id attribute uniquely identifies an OS image."
+        },
+        "name": {
+          "type": "string",
+          "description": "The OS name. Options: redhat, centos, arch, .... Not case sensitive."
+        },
+        "version": {
+          "type": "string",
+          "description": "the OS version in the format of A.B: A is the main version number and B is the minor version number. Exmaples: 5.10, 6.5."
+        },
+        "source": {
+          "type": "array",
+          "description": "Array of URL for this OS image. At least one URL must be provided",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "format": {
+          "type": "string"
+        },
+        "size": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "version",
+        "source",
+        "format",
+        "size"
+      ]
+    },
+
+    "package_manager": {
+      "type": "object",
+      "description": "List of packages to be installed using specified package manager (yum, deb etc)",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Package manager name (i.e. yum)"
+        },
+        "list": {
+          "type": "string",
+          "description": "Space separated list of packaged to be installed - i.e. 'gsl-devel xsd boost-devel'"
+        },
+        "config": {
+          "type": "object",
+          "description": "List of config files for the package manager (if external repository like EPEL or PostgresSQL is used)",
+          "patternProperties": {
+            "^.*$": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "version": {
+                  "type": "string"
+                },
+                "source": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "minItems": 1,
+                  "uniqueItems": true
+                },
+                "format": {
+                  "type": "string"
+                },
+                "size": {
+                  "type": "string"
+                },
+                "mountpoint": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "source",
+                "format",
+                "size",
+                "mountpoint"
+              ]
+            }
+          }
+        }
+      },
+      "required": [
+        "name",
+        "list",
+        "config"
+      ]
+    },
+    "software": {
+      "type": "object",
+      "patternProperties": {
+        "^.*$": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "source": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "format": {
+              "type": "string"
+            },
+            "size": {
+              "type": "string"
+            },
+            "mountpoint": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "source",
+            "format",
+            "size",
+            "mountpoint"
+          ]
+        }
+      }
+    },
+    "data": {
+      "type": "object",
+      "patternProperties": {
+        "^.*$": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "source": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "format": {
+              "type": "string"
+            },
+            "size": {
+              "type": "string"
+            },
+            "mountpoint": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "source",
+            "format",
+            "size",
+            "mountpoint"
+          ]
+        }
+      }
+    }
+  },
+  "required": [
+    "hardware",
+    "os",
+    "kernel"
+  ]
+}

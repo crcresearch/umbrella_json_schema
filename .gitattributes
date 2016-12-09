@@ -1,0 +1,2 @@
+*.exe binary
+*.sh text eol=lf

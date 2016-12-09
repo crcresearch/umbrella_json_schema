@@ -1,0 +1,74 @@
+{
+    "comment": "A ray-tracing application which creates video frames.",
+    "hardware": {
+        "cores": "2",
+        "disk": "3GB",
+        "arch": "x86_64",
+        "memory": "2GB"
+    },
+    "kernel": {
+        "version": ">=2.6.18",
+        "name": "linux"
+    },
+    "os": {
+        "name": "Redhat",
+        "format": "tgz",
+        "checksum": "62aa9bc37afe3f738052da5545832c80",
+        "source": [
+            "http://ccl.cse.nd.edu/research/data/hep-case-study/62aa9bc37afe3f738052da5545832c80/redhat-5.10-x86_64.tar.gz"
+        ],
+        "version": "5.10",
+        "uncompressed_size": "1622159360",
+        "id": "62aa9bc37afe3f738052da5545832c80",
+        "size": "503195460"
+    },
+    "software": {
+        "povray-3.6.1-redhat5-x86_64": {
+            "format": "tgz",
+            "checksum": "9b7f2362e6b927c8ef08c3f92599e47c",
+            "source": [
+                "http://ccl.cse.nd.edu/research/data/hep-case-study/9b7f2362e6b927c8ef08c3f92599e47c/povray-3.6.1-redhat5-x86_64.tar.gz"
+            ],
+            "action": "unpack",
+            "mountpoint": "/software/povray-3.6.1-redhat5-x86_64",
+            "mount_env": "POVRAY_PATH",
+            "uncompressed_size": "3004423",
+            "id": "9b7f2362e6b927c8ef08c3f92599e47c",
+            "size": "1471457"
+        }
+    },
+    "data": {
+        "4_cubes.pov": {
+            "format": "plain",
+            "checksum": "c65266cd2b672854b821ed93028a877a",
+            "source": [
+                "http://ccl.cse.nd.edu/research/data/hep-case-study/c65266cd2b672854b821ed93028a877a/4_cubes.pov"
+            ],
+            "mountpoint": "/tmp/4_cubes.pov",
+            "id": "c65266cd2b672854b821ed93028a877a",
+            "size": "1757"
+        },
+        "WRC_RubiksCube.inc": {
+            "format": "plain",
+            "checksum": "2f8afdd09fc3a6177c6f1977bb3bdae7",
+            "source": [
+                "http://ccl.cse.nd.edu/research/data/hep-case-study/2f8afdd09fc3a6177c6f1977bb3bdae7/WRC_RubiksCube.inc"
+            ],
+            "mountpoint": "/tmp/WRC_RubiksCube.inc",
+            "id": "2f8afdd09fc3a6177c6f1977bb3bdae7",
+            "size": "28499"
+        }
+    },
+    "environ": {
+        "PATH": "/usr/kerberos/sbin:/usr/kerberos/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin",
+        "PWD": "/tmp"
+    },
+    "cmd": "povray +I/tmp/4_cubes.pov +O/tmp/frame000.png +K.0  -H50 -W50",
+    "output": {
+        "files": [
+            "/tmp/frame000.png"
+        ],
+        "dirs": [
+        ]
+    }
+}
