@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "JSON Schema for Umbrella specification",
+  "version": "2016.08.12",
   "type": "object",
   "properties": {
 
