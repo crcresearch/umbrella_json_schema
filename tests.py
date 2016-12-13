@@ -9,7 +9,7 @@ import os
 
 class Test(unittest.TestCase):
     def setUp(self):
-        with open("json_schema.json") as fp:
+        with open("json_schema_self_contained.json") as fp:
             self.schema = json.load(fp)
 
     def _load(self, filename):

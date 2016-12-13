@@ -253,6 +253,21 @@
           ]
         }
       }
+    },
+    "output": {
+      "type": "object",
+      "description": "This section allows the creator of an Umbrella spec to specify the output files and directories.",
+      "properties": {
+        "files": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "dirs":
+        {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
     }
   },
   "required": [
